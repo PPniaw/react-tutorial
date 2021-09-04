@@ -1,4 +1,5 @@
 // import React, {Component} from 'react'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../style.css';
 function Login() {
     return (
@@ -13,7 +14,7 @@ function Login() {
                         <span>密碼</span><input type="password"></input>
                     </div>
                 </div>
-                <a href="">註冊</a>
+                <Link to="/register">註冊</Link>
                 <button type="submit">登入</button>
             </div>
         </div>
