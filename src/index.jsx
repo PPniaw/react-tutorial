@@ -7,7 +7,7 @@ import App from './App.jsx'
 // import { BrowserRouter, Switch } from 'react-router-dom';
 // import { Router, Route, Link } from 'react-router'
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 
 // setupMSW().then(() => 初始化APP)
@@ -32,10 +32,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 setupMSW().then(() =>
   ReactDOM.render(
-  <Router>
-    <Route path="/login" component={Login} />
-    <Route path="/register" component={Register} />
-  </Router>, document.getElementById('root'))
+    <Router>
+      <Switch>
+        <Route path="/register" component={Register} />
+        <Route path="/" component={Login} />
+      </Switch>
+    </Router>, document.getElementById('root'))
 )
 
 // setupMSW().then(() =>

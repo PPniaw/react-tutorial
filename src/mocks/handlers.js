@@ -54,6 +54,7 @@ const register = rest.post('/api/register', async (req, res, ctx) => {
 			}),
 		)
 	}
+	// 英文大寫1 + 2~4個數字 + 小寫英文1
 	if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(username)) {
 		return res(
 			ctx.status(500),

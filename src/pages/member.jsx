@@ -1,3 +1,4 @@
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import '../style.css';
 function Member(){
     return(
