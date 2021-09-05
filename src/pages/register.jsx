@@ -10,11 +10,11 @@ function Register() {
     const history = useHistory()
     const editUsername = (e) => {
         setUsername(e.target.value);
-        console.log("帳號改變", e.target.value)
+        // console.log("帳號改變", e.target.value)
     }
     const editPassword = (e) => {
         setPassword(e.target.value);
-        console.log("密碼改變", e.target.value)
+        // console.log("密碼改變", e.target.value)
     }
     const editCheckPassword = (e) => {
         setCheckPassword(e.target.value)
@@ -26,7 +26,7 @@ function Register() {
         }
     },[checkPassword])
 
-    const handleRegister = (event) => {
+    const handleRegister = () => {
         if (!checkPassword) {
             return setTip({ show: true, message: '確認密碼不能為空' })
         }
@@ -64,14 +64,14 @@ function Register() {
                         <span>帳號</span><input value={username} type="text" onChange={editUsername}></input>
                     </div>
                     <div className="input_box input_box_password">
-                        <span>密碼</span><input type="text" value={password} onChange={editPassword}></input>
+                        <span>密碼</span><input type="password" value={password} onChange={editPassword}></input>
                     </div>
                     <div className="input_box input_box_surePassword">
-                        <span>確認密碼</span><input type="text" value={checkPassword} onChange={editCheckPassword}></input>
+                        <span>確認密碼</span><input type="password" value={checkPassword} onChange={editCheckPassword}></input>
                     </div>
                 </div>
                 <button className="btn" onClick={handleRegister}>註冊</button>
-                {tip.show && <span>{tip.message}</span>}
+                {tip.show && <span className="tip">{tip.message}</span>}
                 <Link to="/">返回登入</Link>
             </div>
         </div>

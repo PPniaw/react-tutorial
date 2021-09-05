@@ -8,13 +8,14 @@
 }
 .content{
     width: 510px;
-    height: 510px;
+    height: auto;
     background: #fff;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
     box-shadow: 5px 5px 5px 1px #242424;
+    padding: 40px;
 }
 .register_box .input_box_password,
 .input_box_account{
