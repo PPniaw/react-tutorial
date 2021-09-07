@@ -25,6 +25,8 @@ function Login() {
         }).then((res) => {
             console.log(res)
             if(res.success){
+                localStorage.setItem('AUTHENTICATION_TOKEN',res.token);
+                console.log(res.token)
                 history.push('/member')
             }else{
                 alert(res.message)
