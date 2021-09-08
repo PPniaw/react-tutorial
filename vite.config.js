@@ -14,6 +14,9 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'src'),
             '@page': path.resolve(__dirname, 'src/pages'),
             '@reducers': path.resolve(__dirname, './src/serviceCenter/store'),
+            '@components': path.resolve(__dirname, './src/components'),
+            '@routes': path.resolve(__dirname, './src/routes'),
+            '@style': path.resolve(__dirname, './src/style.css'),
         },
     },
     plugins: [
