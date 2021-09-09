@@ -5,8 +5,8 @@ import { useState } from 'react/cjs/react.development';
 
 function Tab(props) {
     const { tabSet } = props 
-    const arr = Object.keys(tabSet) // 由tab标签名组成的数组
-    const [selected, setSelected] = useState(arr[0]) // 当前选中的tab标签
+    const arr = Object.keys(tabSet) // 由tab標籤組成的數據
+    const [selected, setSelected] = useState(arr[0]) // 當前選中的tab標籤
     const[needAdmin,setNeedAdmin] = useState(false)
     
     function select(item) {
