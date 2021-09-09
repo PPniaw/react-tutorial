@@ -4,42 +4,42 @@ import { useState, useEffect } from 'react';
 import Login from '@page/login'
 import Register from '@page/register'
 import Member from '@page/member'
-import AuthRoute from '@components/authRouth';
+// import AuthRoute from '@components/authRouth';
 import publicRoutes from '@routes/publicRoutes'
 // import Routers from './router'
 
-// const AuthRoute = (props) => {
-//   const { isLogin, setIslogin } = props;
-//   useEffect(() => {
-//     const token = localStorage.getItem('AUTHENTICATION_TOKEN');
-//     fetch('/api/authentication', {
-//       method: 'get',
-//       headers: new Headers({
-//         'Content-Type': 'application/json',
-//         'AUTHENTICATION_TOKEN': token
-//       })
-//     }).then((res) => {
-//       return res.json()
-//     }).then((res) => {
-//       if (res.success) {
-//         setIslogin(true);
-//       } else {
-//         setIslogin(false);
-//         alert(res.message)
-//       }
+const AuthRoute = (props) => {
+  const { isLogin, setIslogin } = props;
+  useEffect(() => {
+    const token = localStorage.getItem('__mock_token__');
+    fetch('https://l8-upgrade-apis.vercel.app/api/user', {
+      method: 'get',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    }).then((res) => {
+      return res.json()
+    }).then((res) => {
+      if (res.success) {
+        setIslogin(true);
+      } else {
+        setIslogin(false);
+        alert(res.message)
+      }
 
-//     }).catch((error) => {
-//       console.log('Error:', error)
-//     })
-//   }, [])
+    }).catch((error) => {
+      console.log('Error:', error)
+    })
+  }, [])
 
 
-//   return <Route path={'/member'} render={() => {
-//     return isLogin
-//       ? <Member />
-//       : <Redirect to="/login" />
-//   }} />
-// }
+  return <Route path={'/'} render={() => {
+    return isLogin
+      ? <Member />
+      : <Redirect to="/login" />
+  }} />
+}
 
 
 function App() {

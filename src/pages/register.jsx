@@ -35,7 +35,7 @@ function Register() {
         if (checkPassword !== password) {
             return setTip({ show: true, message: '確認密碼有誤' })
         }
-        fetch('/api/register', {
+        fetch('https://l8-upgrade-apis.vercel.app/api/register', {
             method: 'post',
             body: JSON.stringify({ username: username, password: password }),
             headers: new Headers({
