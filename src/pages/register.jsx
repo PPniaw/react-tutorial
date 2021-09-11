@@ -5,6 +5,7 @@ import '@style';
 function Register() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [name,setName]=useState('')
     const [checkPassword, setCheckPassword] = useState('')
     const [tip, setTip] = useState({ show: false, message: '' })
     const [mailWrong,setmailWrong] = useState({ show: false, message: '' })
@@ -20,6 +21,9 @@ function Register() {
     }
     const editCheckPassword = (e) => {
         setCheckPassword(e.target.value)
+    }
+    const editName = (e)=>{
+        setName(e.target.value)
     }
     // checkPassword有值的時候隱藏tip
     useEffect(() => {
@@ -37,7 +41,7 @@ function Register() {
         }
         fetch('https://l8-upgrade-apis.vercel.app/api/register', {
             method: 'post',
-            body: JSON.stringify({ username: username, password: password }),
+            body: JSON.stringify({ username: username, password: password,name:name }),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
@@ -64,6 +68,9 @@ function Register() {
                 <div>
                     <div className="input_box input_box_account">
                         <span>帳號</span><input value={username} type="text" onChange={editUsername} placeholder="必須是信箱"></input>
+                    </div>
+                    <div className="input_box input_box_account">
+                        <span>使用者名稱</span><input value={name} type="text" onChange={editName} placeholder="使者者名稱"></input>
                     </div>
                     <div className="input_box input_box_password">
                         <span>密碼</span><input type="password" value={password} onChange={editPassword} placeholder="4-8字元;首尾必須是英文;中間必須是數字"></input>

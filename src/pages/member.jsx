@@ -3,26 +3,68 @@ import '@style';
 import PersonalEdit from "@page/personalEdit";
 import Administrator from "@page/administrator";
 import Home from "@page/home"
-import Tab from "../components/tab";
-const tabSet = {
-    '首頁':<Home/>,
-    '個人資訊管理':<PersonalEdit/>,
-    '會員管理':<Administrator/>,
-}
-function Member() {
+import Tab from "@components/tab";
+import SideBarControl from "@components/sideBarControl";
+import { useEffect, useState } from "react";
+import Hamburger from "@image/hamburger.svg";
+// const tabSet = {
+//     '首頁': <Home />,
+//     '個人資訊管理': <PersonalEdit />,
+//     '會員管理': <Administrator />,
+// }
+function Member(props) {
+    const [leftShow, setLeftShow] = useState(true)
+    const handleSideBar = () => {
+        if (!leftShow) {
+            setLeftShow(true)
+        } else {
+            setLeftShow(false)
+        }
+    }
+
+    // TAB
+    const tabSet = {
+        '首頁': <Home />,
+        '個人資訊管理': <PersonalEdit />,
+        '會員管理': <Administrator />,
+    }
+    const arr = Object.keys(tabSet)
+    const [selected, setSelected] = useState(arr[0]) // 當前選中的tab標籤
+    const [needAdmin, setNeedAdmin] = useState(false)
+    useEffect(() => {
+        console.log("member leftShow", leftShow)
+    })
+    function select(item) {
+        setSelected(item)
+    }
     return (
         <div className="member">
             <div className="header">
                 <div className="left">
-                    <div>LOGO</div>
-                    <button>控制側邊欄</button>
+                    <div className="logo">LOGO</div>
+                    <div className="icon-hamburger" onClick={handleSideBar}>
+                        <img src={Hamburger} />
+                    </div>
+                    {/* <SideBarControl /> */}
                 </div>
                 <div className="loginPanel">資訊、通知...</div>
             </div>
             <div className="main-index">
-                {/* <div className="sideBar">側邊欄</div>
-                <div className="index"></div> */}
-                <Tab tabSet={tabSet} />
+                {/* <Tab tabSet={tabSet} /> */}
+                <div className="tabBox">
+                    <div className={leftShow ? 'list' : 'list listClose'}>
+                        {arr.map((item,index) => (
+                            <div
+                                key={item}
+                                className={`${item === selected ? 'active item' : 'item'} item-${index}`}
+                                onClick={() => select(item)}
+                            >
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                    {tabSet[selected]}
+                </div>
             </div>
         </div>
     )

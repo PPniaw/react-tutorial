@@ -52,6 +52,19 @@
 .header .left{
     display: flex;
 }
+.header .left .logo{
+    margin-right: 10px;
+}
+
+.header .left .icon-hamburger{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.header .left .icon-hamburger img{
+    width: 100%;
+    height: auto;
+}
 
 /* .sideBar{
     width: 10%;
@@ -68,6 +81,16 @@
     width: 15%;
     height: 100vh;
     border-right: 1px solid #151A54;
+    overflow: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+.tabBox .list.listClose{
+    width: 0;
+}
+.tabBox .list div{
+    white-space: nowrap;
 }
 .tabBox .list .active{
     color: #0075FF;
