@@ -49,8 +49,8 @@ function App() {
     <Switch>
       <Route path="/register" component={Register} />
       <Route path="/login" exact component={() => <Login setIslogin={setIslogin} />} />
-      <Route path="/" exact component={Member} />
-      {/* <AuthRoute isLogin={isLogin} setIslogin={setIslogin} /> */}
+      {/* <Route path="/" exact component={Member} /> */}
+      <AuthRoute isLogin={isLogin} setIslogin={setIslogin} />
     </Switch>
   </HashRouter>
 }
