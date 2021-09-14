@@ -4,41 +4,49 @@ import { useState, useEffect } from 'react';
 import Login from '@page/login'
 import Register from '@page/register'
 import Member from '@page/member'
+import Loading from "@components/loading";
 // import AuthRoute from '@components/authRouth';
 import publicRoutes from '@routes/publicRoutes'
 // import Routers from './router'
 
 const AuthRoute = (props) => {
   const { isLogin, setIslogin } = props;
+  const token = localStorage.getItem('Authorization');
+  const history = useHistory()
   useEffect(() => {
-    const token = localStorage.getItem('__mock_token__');
+    fetchApiUser()
+  },[])
+  const fetchApiUser = () => {
     fetch('https://l8-upgrade-apis.vercel.app/api/user', {
       method: 'get',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': 'Bearer ' + token
       })
     }).then((res) => {
       return res.json()
     }).then((res) => {
       if (res.success) {
         setIslogin(true);
+        return isLogin
       } else {
         setIslogin(false);
-        alert(res.message)
+        alert('權限不足')
+        history.push('/login')
+        return isLogin
       }
-
     }).catch((error) => {
       console.log('Error:', error)
     })
-  }, [])
-
+    return isLogin
+  }
 
   return <Route path={'/'} render={() => {
-    return isLogin
-      ? <Member />
+    return token
+      ? isLogin ? <Member/> : <Loading />
       : <Redirect to="/login" />
   }} />
+  
 }
 
 

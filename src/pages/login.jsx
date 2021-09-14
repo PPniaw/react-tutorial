@@ -18,21 +18,21 @@ function Login(props) {
         setPassword(e.target.value);
     }
     const handleLogin = () => {
-        const token = JSON.parse(localStorage.getItem('__mock_token__'))
+        // const token = JSON.parse(localStorage.getItem('Authorization'))
         fetch('https://l8-upgrade-apis.vercel.app/api/login', {
             method: 'post',
             body: JSON.stringify({ username: username, password: password }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': token
+                // 'Authorization': token
             })
         }).then((res) => {
             return res.json()
         }).then((res) => {
-            console.log(res)
+            console.log(res,'res')
+            console.log(res.data,'login data')
             if (res.success) {
-                // localStorage.setItem('Authorization', res.token);
-                console.log(res)
+                localStorage.setItem('Authorization', res.token);
                 setIslogin(true);
                 history.push('/')
             } else {
