@@ -18,6 +18,7 @@ export default defineConfig({
             '@routes': path.resolve(__dirname, './src/routes'),
             '@style': path.resolve(__dirname, './src/style.css'),
             '@image': path.resolve(__dirname, './src/images'),
+            '@store': path.resolve(__dirname, './src/store'),
         },
     },
     plugins: [

@@ -5,10 +5,13 @@ import Login from '@page/login'
 import Register from '@page/register'
 import Member from '@page/member'
 import Loading from "@components/loading";
+import { createStore } from "redux";
+import reducer from "@store/reducer";
 // import AuthRoute from '@components/authRouth';
 import publicRoutes from '@routes/publicRoutes'
 // import Routers from './router'
 
+const store = createStore(reducer);
 const AuthRoute = (props) => {
   const { isLogin, setIslogin } = props;
   const token = localStorage.getItem('Authorization');
