@@ -95,3 +95,24 @@
 .tabBox .list .active{
     color: #0075FF;
 }
+
+
+.right_item{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.right_item .imgBox{
+    width: 200px;
+    height: 200px;
+}
+.right_item .imgBox img{
+    width: 100%;
+}
+.right_item .upLoadBtn{
+    background: #151A54;
+    color: #fff;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+}

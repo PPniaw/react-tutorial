@@ -2,8 +2,8 @@ const defaultState = {
     username: '信箱',
     name:'姓名',
     role:'',
-    link:'',
-    token: '',
+    imgLink:'',
+    token: '111',
 }
 
 const reducer = (state = defaultState, action) => {
@@ -25,7 +25,12 @@ const reducer = (state = defaultState, action) => {
         }
         case 'FETCH_LINK':{
             const newState = JSON.parse(JSON.stringify(state));
-            newState.link = action.link
+            newState.imgLink = action.imgLink
+            return newState
+        }
+        case 'FETCH_TOKEN':{
+            const newState = JSON.parse(JSON.stringify(state));
+            newState.token = action.token
             return newState
         }
         default:

@@ -3,51 +3,7 @@ import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import '@/style.css';
 import { useSelector, useDispatch } from 'react-redux';
 function Login(props) {
-    const dispatch = useDispatch();
     const history = useHistory()
-
-    const fetchUsername = useCallback(
-        () => dispatch({
-            type: 'FETCH_USERNAME',
-            username: data.username
-        }),
-        [dispatch]
-    );
-    const fetchName = useCallback(
-        () => dispatch({
-            type: 'FETCH_NAME',
-            name: data.name
-        }),
-        [dispatch]
-    );
-    const fetchRole = useCallback(
-        () => dispatch({
-            type: 'FETCH_ROLE',
-            role: data.role
-        }),
-        [dispatch]
-    );
-    const fetchLink = useCallback(
-        () => dispatch({
-            type: 'FETCH_LINK',
-            link: data.link
-        }),
-        [dispatch]
-    );
-    const [data, setData] = useState({
-        username: 'aaa',
-        name: '333',
-        role: '',
-        link: '',
-        token: '',
-    })
-    // useEffect(() => {
-    //     // const susername = data.username
-    //     const sname = data.name
-    //     // const srole = data.role
-    //     // const slink = data.link
-    //     fetchName()
-    // })
 
     const { setIslogin } = props;
     const [username, setUsername] = useState('')
@@ -77,15 +33,6 @@ function Login(props) {
             if (res.success) {
                 localStorage.setItem('Authorization', res.token);
                 setIslogin(true);
-                setData(data.username = res.data.username)
-                setData(data.name = res.data.name)
-                setData(data.role = res.data.role)
-                setData(data.link = res.data.link)
-                console.log('把name裝進去', data.name)
-                fetchUsername()
-                fetchName()
-                fetchRole()
-                fetchLink()
                 history.push('/')
             } else {
                 alert(res.message)
