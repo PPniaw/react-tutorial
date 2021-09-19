@@ -11,6 +11,7 @@ import reducer from "@store/reducer";
 import publicRoutes from '@routes/publicRoutes'
 // import Routers from './router'
 import { useSelector, useDispatch } from 'react-redux';
+import 'antd/dist/antd.css';
 
 const store = createStore(reducer);
 const AuthRoute = (props) => {
@@ -48,9 +49,9 @@ const AuthRoute = (props) => {
     [dispatch]
   );
   const fetchToken = useCallback(
-    () => dispatch({
-      type: 'FETCH_TOKEN',
-      token: data.token
+    () =>dispatch({
+      type:'FETCH_TOKEN',
+      token:data.token
     })
   )
   const [data, setData] = useState({
@@ -62,7 +63,15 @@ const AuthRoute = (props) => {
   })
 
   useEffect(() => {
-    fetchApiUser()
+    // fetchApiUser()
+    const fetchData = async () => {
+      const alreadyData = await Promise.all([
+        fetchApiUser()
+      ]);
+
+      console.log('alreadyData', alreadyData);
+    };
+    fetchData();
   }, [])
   const fetchApiUser = () => {
     fetch('https://l8-upgrade-apis.vercel.app/api/user', {
@@ -86,7 +95,9 @@ const AuthRoute = (props) => {
         fetchRole()
         fetchLink()
         fetchToken()
-        return isLogin
+        return (
+          isLogin,
+          data)
       } else {
         setIslogin(false);
         alert('權限不足')

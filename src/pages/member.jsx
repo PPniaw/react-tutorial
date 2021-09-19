@@ -6,6 +6,7 @@ import Home from "@page/home"
 import Tab from "@components/tab";
 import SideBarControl from "@components/sideBarControl";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import Hamburger from "@image/hamburger.svg";
 // const tabSet = {
 //     '首頁': <Home />,
@@ -13,6 +14,9 @@ import Hamburger from "@image/hamburger.svg";
 //     '會員管理': <Administrator />,
 // }
 function Member(props) {
+    const imgLink = useSelector((state) => state.imgLink)
+    const username = useSelector((state) => state.username)
+    const name = useSelector((state) => state.name)
     const [leftShow, setLeftShow] = useState(true)
     const handleSideBar = () => {
         if (!leftShow) {
@@ -31,9 +35,9 @@ function Member(props) {
     const arr = Object.keys(tabSet)
     const [selected, setSelected] = useState(arr[0]) // 當前選中的tab標籤
     const [needAdmin, setNeedAdmin] = useState(false)
-    useEffect(() => {
-        console.log("member leftShow", leftShow)
-    })
+    // useEffect(() => {
+    //     console.log("member leftShow", leftShow)
+    // })
     function select(item) {
         setSelected(item)
     }
@@ -47,13 +51,19 @@ function Member(props) {
                     </div>
                     {/* <SideBarControl /> */}
                 </div>
-                <div className="loginPanel">資訊、通知...</div>
+                <div className="loginPanel">
+                    <div className="photo">
+                        <img src={imgLink}></img>
+                    </div>
+                    <span>{name}</span>
+                    <span>({username})</span>
+                </div>
             </div>
             <div className="main-index">
                 {/* <Tab tabSet={tabSet} /> */}
                 <div className="tabBox">
                     <div className={leftShow ? 'list' : 'list listClose'}>
-                        {arr.map((item,index) => (
+                        {arr.map((item, index) => (
                             <div
                                 key={item}
                                 className={`${item === selected ? 'active item' : 'item'} item-${index}`}

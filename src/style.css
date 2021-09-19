@@ -65,6 +65,20 @@
     width: 100%;
     height: auto;
 }
+.header .loginPanel{
+    display: flex;
+    align-items: center;
+}
+.header .loginPanel .photo{
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+.header .loginPanel .photo img{
+    width: 100%;
+    height: auto;
+}
 
 /* .sideBar{
     width: 10%;
@@ -97,6 +111,7 @@
 }
 
 
+/* 會員資料編輯 */
 .right_item{
     padding-left: 20px;
     display: flex;
