@@ -1,6 +1,8 @@
 import { useEffect, useState,useCallback } from "react";
 import '@/style.css'
 import { useSelector, useDispatch } from 'react-redux';
+import SideBar from '../components/SideBar';
+import Header from '../components/Header';
 
 function PersonalEdit() {
     const username = useSelector((state) => state.username)
@@ -56,16 +58,21 @@ function PersonalEdit() {
     }
 
     return (
-        <div className="right_item">
-            <h1>帳戶設定</h1>
-            <div className="imgBox">
-                <img src={imgLink}></img>
+        <div className="member">
+            <Header />
+            <SideBar />
+            <div className="right_item">
+
+                <h1>帳戶設定</h1>
+                <div className="imgBox">
+                    <img src={imgLink}></img>
+                </div>
+                <div>
+                    <span>{name}</span><span>({username})</span>
+                </div>
+                <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" multiple onChange={handleChooseImg} />
+                <button className="upLoadBtn" onClick={handleUploadImg}>上傳圖片</button>
             </div>
-            <div>
-                <span>{name}</span><span>({username})</span>
-            </div>
-            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" multiple onChange={handleChooseImg} />
-            <button className="upLoadBtn" onClick={handleUploadImg}>上傳圖片</button>
         </div>
     )
 }

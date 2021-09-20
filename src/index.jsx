@@ -2,15 +2,19 @@
 import { useState, useEffect } from 'react';
 import { setupMSW } from './mocks/browser'
 import ReactDOM from 'react-dom'
-import Member from '@page/member'
+// import Member from '@page/member'
 import App from '@/App'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '@store/reducer';
 import { HashRouter, Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { createLogger } from 'redux-logger'
 
-const store = createStore(reducer);
+const logger = createLogger({
+    collapsed: true
+});
 
+const store = createStore(reducer, applyMiddleware(logger));
 
 setupMSW().then(() =>
   ReactDOM.render(
@@ -19,4 +23,3 @@ setupMSW().then(() =>
     </Provider>
     , document.getElementById('root'))
 )
-

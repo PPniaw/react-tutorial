@@ -1,15 +1,19 @@
 import { Modal, Button, Input } from 'antd';
 import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { setUserData } from '../store/reducer';
+import SideBar from '../components/SideBar';
+import Header from '../components/Header';
+
 
 function Home() {
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-
     const name = useSelector((state) => state.name)
+    const state = useSelector((state) => state)
     const token = useSelector((state) => state.token)
-    console.log('home的name', name)
+
     const [editName, setEditName] = useState('')
     const [data, setData] = useState({
         // username: '',
@@ -43,11 +47,10 @@ function Home() {
             return res.json()
         }).then((res) => {
             if (res.success) {
-                console.log(res)
+                dispatch(setUserData({ ...state, name: res.name }))
+                // console.log(res)
                 fetchName()
                 setEditName(name)
-                setData(data.name = editName)
-                console.log('data.name', data.name)
                 setIsModalVisible(false);
             }
         })
@@ -68,7 +71,9 @@ function Home() {
     //     }
     // }, [])
     return (
-        <div>
+        <div className="member">
+            <Header />
+            <SideBar />
             <Button type="primary" onClick={showModal}>
                 修改使用者名稱
             </Button>

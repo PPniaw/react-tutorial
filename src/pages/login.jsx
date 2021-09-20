@@ -1,14 +1,11 @@
-import { useEffect, useState, useCallback } from "react";
-import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
 import '@/style.css';
-import { useSelector, useDispatch } from 'react-redux';
-function Login(props) {
-    const history = useHistory()
 
-    const { setIslogin } = props;
+function Login() {
+    const history = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [tip, setTip] = useState({ show: false, message: '' })
 
     const editUsername = (e) => {
         setUsername(e.target.value);
@@ -16,23 +13,19 @@ function Login(props) {
     const editPassword = (e) => {
         setPassword(e.target.value);
     }
+
     const handleLogin = () => {
-        // const token = JSON.parse(localStorage.getItem('Authorization'))
         fetch('https://l8-upgrade-apis.vercel.app/api/login', {
             method: 'post',
             body: JSON.stringify({ username: username, password: password }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                // 'Authorization': token
             })
         }).then((res) => {
             return res.json()
         }).then((res) => {
-            console.log(res, 'res')
-            console.log(res.data.name, 'login data')
             if (res.success) {
                 localStorage.setItem('Authorization', res.token);
-                setIslogin(true);
                 history.push('/')
             } else {
                 alert(res.message)
